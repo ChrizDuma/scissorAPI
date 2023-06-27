@@ -1,6 +1,6 @@
 from flask_restx import Namespace, Resource, fields, abort
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from flask import request, redirect
+from flask import request, redirect, make_response
 # Local-Directory imports
 from ..models import Link
 from ..utils.url_validate import validate_url
@@ -62,9 +62,11 @@ class Shorten_Url(Resource):
         return response, 201
 
 
+
+# -----------------------------------------------------------
 @short_namespace.route("/<short_url>")
 class RedirectShortUrl(Resource):
-    # @short_namespace.response(302, description="failed response")
+    @short_namespace.response(302, description="failed response")
     @cache.memoize(timeout=3600)
     def get(self, short_url):
         """Redirect to the original url"""
@@ -72,8 +74,52 @@ class RedirectShortUrl(Resource):
         url = Link.query.filter_by(short_url=short_url).first()
         if not url:
             abort(404, message="Url not found")
+        else:
+            url.visit += 1
+            url.update()
 
-        url.visit += 1
-        url.update()
+            return redirect(url.original_url)
 
-        return redirect(url.original_url)
+
+
+# -----------------------------------------------------------
+@short_namespace.route("/<short_url>/qr_code")
+class QrCode(Resource):
+    @cache.cached(timeout=3600)
+    @jwt_required()
+    def get(self, short_url):
+        """Return the QR code of the short url"""
+        url = Link.query.filter_by(short_url=short_url).first()
+        if not url:
+            abort(404, message="Url not found")
+
+        if not url.qr_code:
+            # if the qr_code hasn't been generated, create it...
+            url.qr_code = url.generate_qr_code()
+            url.update()
+
+        response = make_response(url.qr_code)
+        response.headers.set("Content-Type", "image/png")
+        return response
+    
+
+    
+
+# ---------------------------------------------------------
+@short_namespace.route("/delete_url/<string:short_url>")
+class DeleteUrl(Resource):
+    @short_namespace.response(204, description="Url deleted")
+    @short_namespace.response(404, description="Url not found")
+    @jwt_required()
+    def delete(self, short_url):
+        """Delete a url"""
+
+        current_user = get_jwt_identity()
+        url = Link.query.filter_by(short_url=short_url, user_id=current_user).first()
+
+        if not url:
+            abort(404, message="Url not found")
+        else:
+            url.delete()
+
+            return {"message": "Url deleted"}, 204

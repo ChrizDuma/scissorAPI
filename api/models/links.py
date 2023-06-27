@@ -29,7 +29,7 @@ class Link(db.Model):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.short_url = self.shorten_url()
-        # self.qr_code = self.generate_qr_code()
+        self.qr_code = self.generate_qr_code()
 
     def save(self):
         db.session.add(self)
@@ -52,17 +52,17 @@ class Link(db.Model):
         return short_url
 
     # -----------------------------------------------------
-    # def generate_qr_code(self):
-    #     qr = qrcode.QRCode(version=1, box_size=10, border=5)
-    #     qr.add_data(self.short_url)
-    #     qr.make(fit=True)
-    #     img = qr.make_image(fill="black", back_color="white")
-    #     buffer = BytesIO()
-    #     img.save(buffer, format="JPEG")
-    #     buffer.seek(0)
-    #     # getting the value of the buffer as bytes
-    #     qr_code = buffer.getvalue()
-    #     return qr_code
+    def generate_qr_code(self):
+        qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        qr.add_data(self.short_url)
+        qr.make(fit=True)
+        img = qr.make_image(fill="black", back_color="white")
+        buffer = BytesIO()
+        img.save(buffer, "PNG")
+        buffer.seek(0)
+        # getting the value of the buffer as bytes
+        qr_code = buffer.getvalue()
+        return qr_code
 
 
 # --------------------------------------------------
