@@ -2,4 +2,4 @@ buildCommand:
   - poetry config virtualenvs.create false
   - poetry config virtualenvs.in-project true
   - poetry install
-  - pip install -r rqmts.txt
+  - pip install -r requirements.txt
