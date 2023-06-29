@@ -1,7 +1,5 @@
-version: 1
 buildCommand:
+  - poetry config virtualenvs.create false
+  - poetry config virtualenvs.in-project true
+  - poetry install
   - pip install -r rqmts.txt
-publish:
-  - version: 0
-    commands:
-      - flask db upgrade
