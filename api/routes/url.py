@@ -18,11 +18,11 @@ short_namespace = Namespace("short", description="A namespace for a url shortene
 url_model = short_namespace.model(
     "url_model",
     {
-        "id": fields.Integer(dump_only=True),
+        # "id": fields.Integer(dump_only=True),
         "user_id": fields.Integer(dump_only=True),
         "original_url": fields.String(required=True),
-        "short_url": fields.String(dump_only=True),
-        "date_created": fields.String(dump_only=True),
+        # "short_url": fields.String(dump_only=True),
+        # "date_created": fields.String(dump_only=True),
     },
 )
 

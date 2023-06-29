@@ -11,19 +11,15 @@ default_uri = "postgres://{}:{}@{}/{}".format(
     "postgres", "password", "localhost:5432", db_name
 )
 
-# # Configure logging
-# log = logging.basicConfig(
-#     filename="user_activity.log",
-#     level=logging.INFO,
-#     format="%(asctime)s - %(levelname)s - %(message)s",
-# )
 
-uri = os.getenv("DATABASE_URL", default_uri)
+uri = os.environ.get("DATABASE_URL", default=default_uri)
+# uri = os.getenv("DATABASE_URL", default_uri)
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
 
-cache_url = os.getenv("REDIS_URL", "redis://localhost:6379")
+
+cache_url = os.getenv("CACHE_REDIS_URL")
 
 
 class Config:

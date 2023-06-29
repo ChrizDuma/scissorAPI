@@ -11,7 +11,7 @@ from .auth.views import auth_namespace
 from http import HTTPStatus
 
 
-def create_app(config_app=config_dict["dev"]):
+def create_app(config_app=config_dict["prod"]):
 
     app = Flask(__name__)
     app.config.from_object(config_app)
