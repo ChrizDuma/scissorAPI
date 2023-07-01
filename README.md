@@ -1,4 +1,4 @@
-# scissorAPI
+# scissor_API / Scissly
 
 <!-- Back to Top Navigation Anchor -->
 <a name="readme-top"></a>
@@ -11,14 +11,14 @@
   [![Stargazers][stars-shield]][stars-url]
   [![Issues][issues-shield]][issues-url]
   [![MIT License][license-shield]][license-url]
-  [![Twitter][twitter-shield]][twitter-url]
+  [![LinkedIn][linkedin-shield]][linkedin-url]
 </div>
 
 <!-- Project Logo -->
 <br />
 <div align="center">
-  <a href="https://sciz.site">
-    <img src="website/static/scissor-logo/default.png" alt="Logo" width="90%" height="30%">
+  <a href="https://scissor-api-lyit.onrender.com/">
+    <img src="images/logo-img.png" alt="Logo" width="66%" height="24%">
   </a>
 </div>
 
@@ -26,16 +26,16 @@
 
 <div>
   <p align="center">
-    <a href="https://github.com/Ze-Austin/scissor/wiki"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/ChrizDuma/scissorAPI/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://sciz.site">Live Site</a>
+    <a href="https://scissor-api-lyit.onrender.com/">Live Site</a>
     ·
     <a href="#sample">View Demo</a>
     ·
-    <a href="https://github.com/Ze-Austin/scissor/issues">Report Bug</a>
+    <a href="https://github.com/ChrizDuma/scissorAPI/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Ze-Austin/scissor/issues">Request Feature</a>
+    <a href="https://github.com/ChrizDuma/scissorAPI/issues">Request Feature</a>
   </p>
 </div>
 
@@ -46,20 +46,20 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-scissor">About Scissor</a>
+      <a href="#about-scissly">About Scissly</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
     <li>
-      <a href="#lessons-learned">Lessons Learned</a>
+      <a href="#implimented-functionality">Implimented Functionality</a>
     </li>
     <li>
       <a href="#usage">Usage</a>
       <ul>
         <li><a href="#live-link">Live Link</a></li>
         <li>
-          <a href="#localhost">Localhost</a>
+          <a href="#localhost">Local Host</a>
           <ul>
             <li><a href="#prerequisites">Prerequisites</a></li>
             <li><a href="#installation">Installation</a></li>
@@ -78,17 +78,19 @@
 ---
 
 <!-- About the Tool -->
-## About Scissor
+## About Scissly
 
-Scissor is a simple tool which makes URLs as short as possible, as "brief is the new black" in the age of social media.
+Scissly is a tool that takes valid urls and converts them into shortened versions whilst creating qr-codes for the shortened url links.
 
-Scissor converts long URLs into easily sharable QR codes and short, customizable links.
+The app also records the number of visits a shortened link receives.
 
-This tool was built as a capstone project by <a href="https://www.github.com/Ze-Austin">Ze Austin</a>, a Backend Engineering student at <a href="https://altschoolafrica.com/schools/engineering">AltSchool Africa</a> who's learning to create magic with Python.
+Note: This App is in continious development and more features as well as its frontend integration will be implimented in the upcoming versions.
 
-Live Site: [sciz.site](https://www.sciz.site)
+This tool is a product built by <a href="https://www.github.com/ChrizDuma">chrisduma</a>, a Backend Engineer at <a href="https://altschoolafrica.com/schools/engineering">AltSchool Africa</a>.
 
-Full Documentation: [Scissor Wiki](https://github.com/Ze-Austin/scissor/wiki)
+Live Site: [scissly](https://scissor-api-lyit.onrender.com/)
+
+Full Documentation: [Scissly Wiki](https://github.com/ChrizDuma/scissorAPI/wiki)
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -96,31 +98,25 @@ Full Documentation: [Scissor Wiki](https://github.com/Ze-Austin/scissor/wiki)
 
 ![Python][python]
 ![Flask][flask]
-![Jinja][jinja]
-![HTML5][html5]
-![CSS3][css3]
+![PostgresQL][postgresql]
 ![SQLite][sqlite]
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
 ---
 <!-- Lessons from the Project -->
-## Lessons Learned
+## Implimented Functionality
 
-Creating this tool helped to learn and practice:
-* Responsive Web Design
-* URL Shortening
+These are the practices/functionalities implimented during the creation of this app at it's current stage:
 * QR Code Generation
 * Rate Limiting
 * Caching
-* Debugging
 * Routing
-* Database Management
-* Internet Security
-* User Authentication
-* User Authorization
-* Message Flashing
+* Debugging
 * Documentation
+* Internet Security
+* Database Management
+* User Authentication & Authorization
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -129,13 +125,13 @@ Creating this tool helped to learn and practice:
 <!-- Getting Started -->
 ## Usage
 
-This tool can be accessed via the deployed site or a local copy of the project.
+This tool can be accessed via the deployed site in the link below or a local copy can be attained through forking the repository of the project.
 
 ### Live Link
 
-Deployed site: [sciz.site](https://www.sciz.site) - hosted via [render](https://www.render.com) 
+Deployed site: [scissly](https://scissor-api-lyit.onrender.com/) - hosted via [render](https://www.render.com) 
 
-### Localhost
+### Local Host
 
 To get a local copy up and running, follow the steps below.
 
@@ -147,7 +143,7 @@ Python3: [Get Python](https://www.python.org/downloads/)
 
 1. Clone this repo
    ```sh
-   git clone https://github.com/Ze-Austin/scissor.git
+   git clone https://github.com/ChrizDuma/scissorAPI.git
    ```
 2. Activate the virtual environment
    ```sh
@@ -157,11 +153,15 @@ Python3: [Get Python](https://www.python.org/downloads/)
    ```sh
    pip install -r requirements.txt
    ```
-4. Run Flask
+4. Export Flask App as the api's root directory
+   ```sh
+   export FLASK_APP=api/
+   ```
+5. Run Flask
    ```sh
    flask run
    ```
-5. Open the link generated in the terminal on a browser  
+6. Open the link generated in the terminal on a browser  
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -188,7 +188,7 @@ Python3: [Get Python](https://www.python.org/downloads/)
 
 <br/>
 
-[![Redirect Screenshot][redirect-screenshot]](https://github.com/ChrizDuma/scissorAPI/blob/main/images/redirect.png)
+[![Redirect Screenshot][redirect-screenshot]](https://github.com/ChrizDuma/scissorAPI/blob/main/images/redirect%20to%20original%20url.png)
 
 <br/>
 
@@ -212,7 +212,7 @@ Chris Duma - [@chrisduma](https://www.linkedin.com/in/chrisduma) - chrisduma01@y
 
 Live Site: [scissly](https://scissor-api-lyit.onrender.com/)
 
-Project Link: [Scissor Repo](https://github.com/ChrizDuma/scissorAPI)
+Project Link: [Scissly Repository](https://github.com/ChrizDuma/scissorAPI)
 
 Documentation: [Scissly Wiki](https://github.com/ChrizDuma/scissorAPI/wiki)
 
@@ -245,11 +245,11 @@ This project was made possible by:
 [issues-url]: https://github.com/ChrizDuma/scissorAPI/issues
 [license-shield]: https://img.shields.io/github/license/ChrizDuma/scissorAPI.svg?style=for-the-badge
 [license-url]: https://github.com/ChrizDuma/scissorAPI/blob/main/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-@chrisduma-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://linkedin.com/in/chrisduma/
+[linkedin-shield]: https://img.shields.io/badge/-@chrisduma-1ca0f1?style=for-the-badge&logo=linkedin&logoColor=white&link=https://linkedin.com/in/chrisduma/
 [linkedin-url]: https://www.linkedin.com/in/chrisduma/
 [qr-code-screenshot]: images/qr-code.png
 [shorten_url-screenshot]: images/shorten_url.png
-[redirect-screenshot]: images/redirect.png
+[redirect-screenshot]: images/redirect%20to%20original%20url.png
 [python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [flask]: https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white
 [sqlite]: https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white
